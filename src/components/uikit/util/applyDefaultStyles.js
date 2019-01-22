@@ -58,6 +58,7 @@ const applyDefaultStyles = Component => styled(Component)`
   ${styleHelper('flexGrow')}
   ${styleHelper('cursor')}
   ${styleHelper('transition')}
+  ${styleHelper('paddingTop')}
 `;
 
 export default applyDefaultStyles;
