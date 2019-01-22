@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import MediaQuery from 'react-responsive';
 import { FaBars } from 'react-icons/fa';
 
-import { Button, Flex } from 'components/uikit';
+import { Flex } from 'components/uikit';
 import { desktop, tablet } from 'components/uikit/Responsive';
 
 const MenuLink = styled(Link)`
