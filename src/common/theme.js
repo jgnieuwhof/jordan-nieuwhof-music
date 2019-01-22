@@ -18,6 +18,8 @@ const colors = {
   primary: '#20b95f'
 };
 
-const theme = { space, fontSize, colors };
-
-export default theme;
+export default {
+  space,
+  fontSize,
+  colors
+};

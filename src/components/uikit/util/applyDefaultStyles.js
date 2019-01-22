@@ -3,6 +3,7 @@ import {
   space,
   height,
   minHeight,
+  maxHeight,
   width,
   minWidth,
   border,
@@ -13,7 +14,12 @@ import {
   justifySelf,
   alignSelf,
   textAlign,
-  lineHeight
+  lineHeight,
+  position,
+  top,
+  right,
+  left,
+  bottom
 } from 'styled-system';
 import decamelize from 'decamelize';
 
@@ -21,9 +27,16 @@ const styleHelper = (prop, cssProp) => props =>
   props[prop] ? `${cssProp || decamelize(prop, '-')}: ${props[prop]};` : ``;
 
 const applyDefaultStyles = Component => styled(Component)`
+  ${position}
+  ${top}
+  ${right}
+  ${left}
+  ${bottom}
+
   ${space}
   ${height}
   ${minHeight}
+  ${maxHeight}
   ${width}
   ${minWidth}
   ${border}
@@ -44,6 +57,7 @@ const applyDefaultStyles = Component => styled(Component)`
   ${styleHelper('transformOrigin')}
   ${styleHelper('flexGrow')}
   ${styleHelper('cursor')}
+  ${styleHelper('transition')}
 `;
 
 export default applyDefaultStyles;

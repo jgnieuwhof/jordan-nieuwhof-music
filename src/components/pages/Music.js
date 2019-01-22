@@ -4,8 +4,8 @@ import desert from 'img/desert.jpg';
 
 import Page from './Page';
 
-const Home = () => {
+const Music = () => {
   return <Page background={desert} />;
 };
 
-export default Home;
+export default Music;
