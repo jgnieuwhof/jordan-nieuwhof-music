@@ -68,7 +68,7 @@ const Header = () => {
                     <>
                       <CollapsableLink to="/">Home</CollapsableLink>
                       <CollapsableLink to="/music">Music</CollapsableLink>
-                      <CollapsableLink to="/tour">Tour</CollapsableLink>
+                      <CollapsableLink to="/shows">Shows</CollapsableLink>
                       <CollapsableLink to="/contact">Contact</CollapsableLink>
                     </>
                   )}

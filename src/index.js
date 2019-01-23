@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'emotion-theming';
 import { BrowserRouter } from 'react-router-dom';
 
-import './index.css';
-import theme from './common/theme';
+import 'index.css';
+import theme from 'common/theme';
 
-import App from 'components/App';
 import * as serviceWorker from './serviceWorker';
+import App from 'components/App';
+import { ContentfulProvider } from 'components/context/ContentfulContext';
 
 ReactDOM.render(
   <ThemeProvider {...{ theme }}>
     <BrowserRouter>
-      <App />
+      <ContentfulProvider>
+        <App />
+      </ContentfulProvider>
     </BrowserRouter>
   </ThemeProvider>,
   document.getElementById('root')

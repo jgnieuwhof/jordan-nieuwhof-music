@@ -6,11 +6,13 @@ import {
   maxHeight,
   width,
   minWidth,
+  maxWidth,
   border,
   borderRadius,
   fontSize,
   fontWeight,
   color,
+  justifyContent,
   justifySelf,
   alignSelf,
   textAlign,
@@ -39,6 +41,7 @@ const applyDefaultStyles = Component => styled(Component)`
   ${maxHeight}
   ${width}
   ${minWidth}
+  ${maxWidth}
   ${border}
   ${borderRadius}
 
@@ -49,16 +52,20 @@ const applyDefaultStyles = Component => styled(Component)`
   ${textAlign}
   ${lineHeight}
 
+  ${justifyContent}
   ${justifySelf}
   ${alignSelf}
 
   ${styleHelper('overflowY')}
   ${styleHelper('transform')}
   ${styleHelper('transformOrigin')}
+  ${styleHelper('flex')}
   ${styleHelper('flexGrow')}
   ${styleHelper('cursor')}
   ${styleHelper('transition')}
   ${styleHelper('paddingTop')}
+  ${styleHelper('margin')}
+  ${styleHelper('marginLeft')}
 `;
 
 export default applyDefaultStyles;
