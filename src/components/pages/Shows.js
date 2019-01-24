@@ -20,7 +20,7 @@ const ShowRow = styled(Div)`
   > div {
     display: flex;
     align-items: center;
-    &:first-child {
+    &:first-of-type {
       padding-left: var(--padding);
     }
     &:last-child {
@@ -77,7 +77,7 @@ const Shows = ({ contentfulClient }) => {
       <PageHeader>Shows</PageHeader>
       <ShowList>
         {shows.map(x => (
-          <Show {...x} />
+          <Show key={x.id} {...x} />
         ))}
       </ShowList>
     </Page>
