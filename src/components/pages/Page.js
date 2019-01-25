@@ -15,6 +15,17 @@ const PageHeader = styled.h2`
   font-size: ${x => x.theme.fontSize[4]};
 `;
 
+const StyledPageItem = x => styled(x)`
+  --border: 2px solid ${x => x.theme.dark};
+
+  ${x => x.index === 0 && `border-top: var(--border);`}
+  border-bottom: var(--border);
+`;
+export const PageItem = ({ Component, ...x }) => {
+  const StyledComponent = StyledPageItem(Component || Div);
+  return <StyledComponent {...x} />;
+};
+
 const Page = ({ background, header, loading, children }) => (
   <StyledPage
     flex={1}

@@ -5,7 +5,8 @@ import desert from 'img/desert.jpg';
 
 import { ContentfulState } from 'components/state';
 import { Button, Div, Flex, Img } from 'components/uikit';
-import Page from './Page';
+import Page, { PageItem } from './Page';
+import { toHuman } from 'util/date';
 
 const AlbumCover = ({ url }) => <Img src={url} alt={url} maxWidth={300} />;
 
@@ -36,22 +37,25 @@ const Music = () => {
         <Page background={desert} header="Music" {...{ loading }}>
           <Flex alignItems="center" flexDirection="column">
             {items.map(
-              ({
-                id,
-                title,
-                description,
-                releaseDate,
-                image,
-                tracks,
-                spotifyUrl,
-                itunesUrl,
-                bandcampUrl,
-                googlePlayUrl
-              }) => (
-                <Flex key={id} p={3}>
+              (
+                {
+                  id,
+                  title,
+                  description,
+                  releaseDate,
+                  image,
+                  tracks,
+                  spotifyUrl,
+                  itunesUrl,
+                  bandcampUrl,
+                  googlePlayUrl
+                },
+                i
+              ) => (
+                <PageItem key={id} index={i} p={3} Component={Flex}>
                   <Div>
                     <Div>{title}</Div>
-                    <Div>{releaseDate}</Div>
+                    <Div>{toHuman(releaseDate)}</Div>
                     <Div>
                       <AlbumCover url={image.fields.file.url} />
                     </Div>
@@ -65,7 +69,7 @@ const Music = () => {
                       <Track key={x} number={i + 1} title={x} />
                     ))}
                   </Div>
-                </Flex>
+                </PageItem>
               )
             )}
           </Flex>

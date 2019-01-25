@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { format } from 'date-fns';
 import MediaQuery from 'react-responsive';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import desert from 'img/desert.jpg';
 
-import Page from './Page';
+import Page, { PageItem } from './Page';
 import { ContentfulState } from 'components/state';
 import { Button, Div } from 'components/uikit';
 import { tablet } from 'components/uikit/Responsive';
+import { toHuman } from 'util/date';
 
 const ShowRow = styled(Div)`
   --padding: ${x => x.theme.space[x.isMobile ? 2 : 4]}px;
@@ -38,7 +38,7 @@ const Show = ({ date, name, url, venue }) => (
         <Div justifyContent={isMobile ? 'center' : 'flex-start'}>
           {name} - {venue}
         </Div>
-        <Div justifyContent="center">{format(date, 'MMM Do, YYYY')}</Div>
+        <Div justifyContent="center">{toHuman(date)}</Div>
         <Div justifyContent={isMobile ? 'center' : 'flex-end'}>
           <Button href={url} Icon={FaExternalLinkAlt}>
             Event
@@ -49,25 +49,16 @@ const Show = ({ date, name, url, venue }) => (
   </MediaQuery>
 );
 
-const ShowList = styled.div`
-  > div {
-    border-top: 2px solid ${x => x.theme.dark};
-  }
-  > div:last-child {
-    border-bottom: 2px solid ${x => x.theme.dark};
-  }
-`;
-
 const Shows = () => {
   return (
     <ContentfulState query={{ content_type: 'events', order: 'fields.date' }}>
       {({ items, loading }) => (
         <Page header="Shows" background={desert} {...{ loading }}>
-          <ShowList>
-            {items.map(x => (
-              <Show key={x.id} {...x} />
-            ))}
-          </ShowList>
+          {items.map((x, i) => (
+            <PageItem key={x.id} index={i}>
+              <Show {...x} />
+            </PageItem>
+          ))}
         </Page>
       )}
     </ContentfulState>
