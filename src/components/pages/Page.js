@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { FaSpinner } from 'react-icons/fa';
 
-import { Div } from 'components/uikit';
+import { Div, Flex } from 'components/uikit';
 import { desktop } from 'components/uikit/Responsive';
 
 const StyledPage = styled(Div)`
@@ -14,19 +15,26 @@ const PageHeader = styled.h2`
   font-size: ${x => x.theme.fontSize[4]};
 `;
 
-const Page = ({ background, header, children }) => (
+const Page = ({ background, header, loading, children }) => (
   <StyledPage
     flex={1}
     flexGrow={1}
     minHeight={1}
     p={4}
     textAlign="center"
+    {...loading && { justifyContent: 'center' }}
     {...{ background }}
   >
-    <Div maxWidth={desktop} margin="0 auto">
-      {header && <PageHeader>{header}</PageHeader>}
-      {children}
-    </Div>
+    {loading ? (
+      <Flex alignItems="center" justifyContent="center" height="100%">
+        <FaSpinner className="icon-spin" size={30} />
+      </Flex>
+    ) : (
+      <Div maxWidth={desktop} margin="0 auto">
+        {header && <PageHeader>{header}</PageHeader>}
+        {children}
+      </Div>
+    )}
   </StyledPage>
 );
 
