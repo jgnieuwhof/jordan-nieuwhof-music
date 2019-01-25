@@ -10,11 +10,11 @@ const StyledPage = styled(Div)`
   overflow-y: scroll;
 `;
 
-export const PageHeader = styled.h2`
+const PageHeader = styled.h2`
   font-size: ${x => x.theme.fontSize[4]};
 `;
 
-const Page = ({ background, children }) => (
+const Page = ({ background, header, children }) => (
   <StyledPage
     flex={1}
     flexGrow={1}
@@ -24,6 +24,7 @@ const Page = ({ background, children }) => (
     {...{ background }}
   >
     <Div maxWidth={desktop} margin="0 auto">
+      {header && <PageHeader>{header}</PageHeader>}
       {children}
     </Div>
   </StyledPage>

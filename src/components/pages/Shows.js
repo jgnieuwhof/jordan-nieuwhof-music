@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { format } from 'date-fns';
 import MediaQuery from 'react-responsive';
@@ -6,8 +6,8 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import desert from 'img/desert.jpg';
 
-import Page, { PageHeader } from './Page';
-import { withContentful } from 'components/context/ContentfulContext';
+import Page from './Page';
+import { ContentfulState } from 'components/state';
 import { Button, Div } from 'components/uikit';
 import { tablet } from 'components/uikit/Responsive';
 
@@ -58,30 +58,20 @@ const ShowList = styled.div`
   }
 `;
 
-const Shows = ({ contentfulClient }) => {
-  const [shows, setShows] = useState([]);
-
-  useEffect(() => {
-    contentfulClient
-      .getEntries({
-        content_type: 'events',
-        order: 'fields.date'
-      })
-      .then(({ items }) => {
-        setShows(items.map(x => ({ id: x.sys.id, ...x.fields })));
-      });
-  }, []);
-
+const Shows = () => {
   return (
-    <Page background={desert}>
-      <PageHeader>Shows</PageHeader>
-      <ShowList>
-        {shows.map(x => (
-          <Show key={x.id} {...x} />
-        ))}
-      </ShowList>
-    </Page>
+    <ContentfulState query={{ content_type: 'events', order: 'fields.date' }}>
+      {({ items, loading }) => (
+        <Page header="Shows" background={desert} {...{ loading }}>
+          <ShowList>
+            {items.map(x => (
+              <Show key={x.id} {...x} />
+            ))}
+          </ShowList>
+        </Page>
+      )}
+    </ContentfulState>
   );
 };
 
-export default withContentful(Shows);
+export default Shows;
