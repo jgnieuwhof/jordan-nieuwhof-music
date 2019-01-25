@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import MediaQuery from 'react-responsive';
 
 import desert from 'img/desert.jpg';
 
 import { ContentfulState } from 'components/state';
 import { Button, Div, Flex, Img } from 'components/uikit';
+import { tablet } from 'components/uikit/Responsive';
 import Page, { PageItem } from './Page';
 import { toHuman } from 'util/date';
 
@@ -26,6 +28,10 @@ const Track = ({ number, title }) => (
   <StyledTrack>
     {number}. {title}
   </StyledTrack>
+);
+
+const Badge = ({ url, ...x }) => (
+  <Button href={url} fontWeight="auto" fontSize="10px" p={1} m={1} {...x} />
 );
 
 const Music = () => {
@@ -52,24 +58,36 @@ const Music = () => {
                 },
                 i
               ) => (
-                <PageItem key={id} index={i} p={3} Component={Flex}>
-                  <Div>
-                    <Div>{title}</Div>
-                    <Div>{toHuman(releaseDate)}</Div>
-                    <Div>
-                      <AlbumCover url={image.fields.file.url} />
-                    </Div>
-                    <Button href={spotifyUrl}>Spotify</Button>
-                    <Button href={itunesUrl}>iTunes</Button>
-                    <Button href={bandcampUrl}>Bandcamp</Button>
-                    <Button href={googlePlayUrl}>Google Play</Button>
-                  </Div>
-                  <Div>
-                    {tracks.map((x, i) => (
-                      <Track key={x} number={i + 1} title={x} />
-                    ))}
-                  </Div>
-                </PageItem>
+                <MediaQuery minWidth={tablet}>
+                  {isTabletOrDesktop => (
+                    <PageItem key={id} index={i} p={3}>
+                      <Div>
+                        <Div fontSize={4}>{title}</Div>
+                        <Div fontSize={1}>{toHuman(releaseDate)}</Div>
+                      </Div>
+                      <Flex buffer>
+                        <Div mr={2}>
+                          <Div>
+                            <AlbumCover url={image.fields.file.url} />
+                          </Div>
+                          <Div>
+                            <Badge url={spotifyUrl}>Spotify</Badge>
+                            <Badge url={itunesUrl}>iTunes</Badge>
+                            <Badge url={bandcampUrl}>Bandcamp</Badge>
+                            <Badge url={googlePlayUrl}>Google Play</Badge>
+                          </Div>
+                        </Div>
+                        {isTabletOrDesktop && (
+                          <Div ml={2}>
+                            {tracks.map((x, i) => (
+                              <Track key={x} number={i + 1} title={x} />
+                            ))}
+                          </Div>
+                        )}
+                      </Flex>
+                    </PageItem>
+                  )}
+                </MediaQuery>
               )
             )}
           </Flex>

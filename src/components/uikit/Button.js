@@ -8,7 +8,20 @@ const StyledLink = styled(applyDefaultStyles('a'))`
   text-decoration: none;
 `;
 
-const Button = ({ children, Icon, href, disabled, ...x }) => {
+const Button = ({
+  children,
+  Icon,
+  href,
+  disabled,
+  fontSize = 2,
+  p = 2,
+  bg = 'dark',
+  color = 'light',
+  fontWeight = 'bold',
+  border = 0,
+  borderRadius = 4,
+  ...x
+}) => {
   const Component = href ? StyledLink : StyledButton;
   const StyledIcon =
     Icon &&
@@ -20,14 +33,17 @@ const Button = ({ children, Icon, href, disabled, ...x }) => {
   return (
     <Component
       {...x}
-      {...{ disabled, href }}
-      p={2}
-      bg="dark"
-      color="light"
-      fontSize={2}
-      fontWeight="bold"
-      border={0}
-      borderRadius={4}
+      {...{
+        disabled,
+        href,
+        p,
+        bg,
+        color,
+        fontSize,
+        fontWeight,
+        border,
+        borderRadius
+      }}
       {...!disabled && { cursor: 'pointer' }}
     >
       {children}
