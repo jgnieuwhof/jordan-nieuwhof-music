@@ -15,7 +15,7 @@ const MenuLink = styled(Link)`
   font-weight: bold;
 `;
 
-const CollapseButton = styled(FaBars)`
+const CollapseButton = styled(({ isCollapsed, ...x }) => <FaBars {...x} />)`
   height: 19px;
   width: 19px;
   position: absolute;

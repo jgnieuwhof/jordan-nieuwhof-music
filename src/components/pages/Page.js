@@ -26,7 +26,13 @@ export const PageItem = ({ Component, ...x }) => {
   return <StyledComponent {...x} />;
 };
 
-const Page = ({ background, header, loading, children }) => (
+const Page = ({
+  background,
+  header,
+  loading,
+  children,
+  maxWidth = desktop
+}) => (
   <StyledPage
     flex={1}
     flexGrow={1}
@@ -41,7 +47,7 @@ const Page = ({ background, header, loading, children }) => (
         <FaSpinner className="icon-spin" size={30} />
       </Flex>
     ) : (
-      <Div maxWidth={desktop} margin="0 auto">
+      <Div margin="0 auto" {...{ maxWidth }}>
         {header && <PageHeader>{header}</PageHeader>}
         {children}
       </Div>
