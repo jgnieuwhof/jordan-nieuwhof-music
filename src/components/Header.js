@@ -8,9 +8,12 @@ import { Flex } from 'components/uikit';
 import { desktop, tablet } from 'components/uikit/Responsive';
 
 const MenuLink = styled(Link)`
+  --mV: ${x => x.theme.space[3]}px;
+  --mH: ${x => x.theme.space[4]}px;
+
   text-transform: uppercase;
   text-decoration: none;
-  margin: ${x => x.theme.space[3]}px;
+  margin: var(--mV) var(--mH) var(--mV) var(--mH);
   color: ${x => x.theme.colors.light};
   font-weight: bold;
 `;
