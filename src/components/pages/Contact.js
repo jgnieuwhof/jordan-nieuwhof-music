@@ -84,9 +84,14 @@ const Contact = () => {
           <FormContainer pt={4} {...{ isMobile }}>
             {hasSubmitted ? (
               <Div>
-                Thank you for your message! I'll get back to you as soon as
-                possible. If you need to send another message come back in a few
-                minutes, or email {emailLink}.
+                <p>
+                  Thank you for your message! I'll get back to you as soon as
+                  possible.
+                </p>
+                <p>
+                  If you need to send another message come back in a few
+                  minutes, or email {emailLink}.
+                </p>
               </Div>
             ) : (
               <Form
