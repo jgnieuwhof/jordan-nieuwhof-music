@@ -42,16 +42,16 @@ const Page = ({
     {...loading && { justifyContent: 'center' }}
     {...{ background }}
   >
-    {loading ? (
-      <Flex alignItems="center" justifyContent="center" height="100%">
-        <FaSpinner className="icon-spin" size={30} />
-      </Flex>
-    ) : (
-      <Div margin="0 auto" {...{ maxWidth }}>
-        {header && <PageHeader>{header}</PageHeader>}
-        {children}
-      </Div>
-    )}
+    <Div margin="0 auto" {...{ maxWidth }}>
+      {header && <PageHeader>{header}</PageHeader>}
+      {loading ? (
+        <Flex alignItems="center" justifyContent="center" height="100%">
+          <FaSpinner className="icon-spin" size={30} />
+        </Flex>
+      ) : (
+        children
+      )}
+    </Div>
   </StyledPage>
 );
 
